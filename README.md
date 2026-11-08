@@ -53,3 +53,6 @@ copy driver\inpoutx64.dll target\release\
 | WinRing0x64.dll + .sys | ✓ | ✗ (Defender may block it) |
 
 The SMC is reached through I/O ports 0x300/0x304, or on T2 Macs through MMIO (the address comes from ACPI). The protocol follows the Linux `applesmc` driver and the t2linux patches.
+
+## License
+MIT, see [LICENSE](LICENSE). `driver\inpoutx64.dll` is under its own MIT license (`driver\license.txt`).
