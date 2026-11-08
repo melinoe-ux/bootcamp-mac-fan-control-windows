@@ -1,10 +1,10 @@
 [package]
-name = "macfan"
+name = "wmf-control"
 version = "0.1.0"
 edition = "2024"
 description = "Fan control and sensor monitor for Intel Macs running Windows (Boot Camp)"
 license = "MIT"
-repository = "https://github.com/melinoe-ux/macfan"
+repository = "https://github.com/melinoe-ux/wmf-control"
 
 [dependencies]
 anyhow = "1.0.104"

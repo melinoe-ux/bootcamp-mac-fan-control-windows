@@ -1,6 +1,6 @@
 //! Background worker: polls the SMC, applies fan rules, publishes snapshots to the UI.
 //!
-//! Control strategy is the same as Macs Fan Control: we never take the fan away from
+//! Control strategy: we never take the fan away from
 //! the SMC. Instead we raise the fan's *minimum* speed (`FnMn`). The SMC keeps full
 //! authority to spin faster when it needs to, so a crash of this program can never
 //! leave the machine without cooling. If writing the minimum is refused, forced mode
@@ -442,7 +442,7 @@ mod tests {
 
     #[test]
     fn modes_and_restore() {
-        let dir = std::env::temp_dir().join("macfan-test");
+        let dir = std::env::temp_dir().join("wmf-control-test");
         let _ = std::fs::remove_dir_all(&dir);
         unsafe { std::env::set_var("APPDATA", &dir) };
 

@@ -332,7 +332,7 @@ impl eframe::App for App {
         let cpu_txt = snap.sensors.iter().find(|s| s.key == "TC0P").map(|s| self.fmt_temp(s.value));
         if let Some(t) = &mut self.tray {
             t.blast_item.set_checked(snap.full_blast);
-            let mut tip = String::from("MacFan");
+            let mut tip = String::from("WMF Control");
             if snap.full_blast {
                 tip += " – FULL BLAST";
             }
@@ -347,7 +347,7 @@ impl eframe::App for App {
 
         egui::Panel::top("top").show(root, |ui| {
             ui.horizontal(|ui| {
-                ui.label(RichText::new("MacFan").strong().size(18.0));
+                ui.label(RichText::new("WMF Control").strong().size(18.0));
                 if !snap.transport.is_empty() {
                     ui.label(RichText::new(&snap.transport).weak());
                 }
@@ -398,7 +398,7 @@ impl eframe::App for App {
                 ui.add_space(6.0);
                 ui.label(RichText::new(err).color(Color32::from_rgb(240, 90, 80)).monospace());
                 ui.add_space(10.0);
-                ui.label("MacFan needs a port I/O driver. Put inpoutx64.dll (recommended, supports T2 MMIO) or WinRing0x64.dll + WinRing0x64.sys next to macfan.exe and run it as administrator.");
+                ui.label("This app needs a port I/O driver. Put inpoutx64.dll (recommended, supports T2 MMIO) or WinRing0x64.dll + WinRing0x64.sys next to wmf-control.exe and run it as administrator.");
                 ui.add_space(10.0);
                 ui.horizontal(|ui| {
                     if ui.button("Retry").clicked() {

@@ -109,7 +109,7 @@ impl WindowCtl {
 
 impl Tray {
     pub fn new(worker: Arc<Mutex<Worker>>, win: Arc<WindowCtl>, ctx: eframe::egui::Context) -> anyhow::Result<Self> {
-        let show = MenuItem::new("Show MacFan", true, None);
+        let show = MenuItem::new("Show WMF Control", true, None);
         let blast_item = CheckMenuItem::new("Full Blast", true, false, None);
         let quit = MenuItem::new("Quit (fans back to Auto)", true, None);
         let menu = Menu::new();
@@ -121,7 +121,7 @@ impl Tray {
         let icon = TrayIconBuilder::new()
             .with_menu(Box::new(menu))
             .with_menu_on_left_click(false)
-            .with_tooltip("MacFan")
+            .with_tooltip("WMF Control")
             .with_icon(Icon::from_rgba(icon_rgba(32), 32, 32)?)
             .build()?;
 

@@ -1339,21 +1339,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5d15f86d12da44cd8d4ec3c73984537eb7f4cadcb9776a575a0a8a05ca11005c"
 
 [[package]]
-name = "macfan"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "eframe",
- "embed-manifest",
- "libloading 0.9.0",
- "raw-window-handle",
- "serde",
- "serde_json",
- "tray-icon",
- "windows-sys 0.61.2",
-]
-
-[[package]]
 name = "memchr"
 version = "2.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2811,6 +2796,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8c3b93199df0ab874cdf0c6a94f0a0dc3423fe41f1cafb62b8bd7b1deb277aef"
 dependencies = [
  "memchr",
+]
+
+[[package]]
+name = "wmf-control"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "eframe",
+ "embed-manifest",
+ "libloading 0.9.0",
+ "raw-window-handle",
+ "serde",
+ "serde_json",
+ "tray-icon",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

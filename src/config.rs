@@ -35,13 +35,19 @@ pub struct Config {
 }
 
 impl Config {
+    fn base() -> PathBuf {
+        std::env::var_os("APPDATA").map(PathBuf::from).unwrap_or_else(|| PathBuf::from("."))
+    }
+
     fn path() -> PathBuf {
-        let base = std::env::var_os("APPDATA").map(PathBuf::from).unwrap_or_else(|| PathBuf::from("."));
-        base.join("MacFan").join("config.json")
+        Self::base().join("WMF Control").join("config.json")
     }
 
     pub fn load() -> Self {
+        // Settings written under the old project name are picked up once.
+        let old = Self::base().join("MacFan").join("config.json");
         let mut c: Config = std::fs::read_to_string(Self::path())
+            .or_else(|_| std::fs::read_to_string(old))
             .ok()
             .and_then(|s| serde_json::from_str(&s).ok())
             .unwrap_or_default();

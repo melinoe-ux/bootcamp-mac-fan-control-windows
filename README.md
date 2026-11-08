@@ -1,6 +1,6 @@
-# MacFan
+# WMF Control
 
-Fan control and sensor monitor written in Rust for Intel Macs running Windows (Boot Camp). It works the same way as Macs Fan Control.
+Fan control and sensor monitor written in Rust for Intel Macs running Windows (Boot Camp).
 
 ## Features
 - Live RPM for every fan (current / min / max)
@@ -12,10 +12,10 @@ Fan control and sensor monitor written in Rust for Intel Macs running Windows (B
 - **Full Blast**: one click runs every fan at maximum RPM; click again to return to your per-fan settings. You can also toggle it from the tray menu.
 - **Minimize to tray**: minimizing (or the "Hide to tray" button) sends the window to the system tray while fan control keeps running in the background. Left-click the tray icon to bring it back. The tray menu has Show, Full Blast and Quit (Quit returns the fans to Auto). The tooltip shows the fan RPMs and CPU temperature.
 - °C / °F, refresh interval, option to show unnamed sensors, minimize-to-tray on/off
-- Settings are saved to `%APPDATA%\MacFan\config.json`
+- Settings are saved to `%APPDATA%\WMF Control\config.json`
 
 ## Safety
-Like Macs Fan Control, the app raises the fan's **minimum speed** (`FnMn`) instead of taking the fan away from the SMC. The SMC can still speed the fan up whenever it needs to.
+The app raises the fan's **minimum speed** (`FnMn`) instead of taking the fan away from the SMC. The SMC can still speed the fan up whenever it needs to.
 - Closing the app returns every fan to Auto.
 - If the app crashes, the original minimums are restored from the config file on the next start. A reboot also resets the SMC.
 - In sensor-based mode, if the chosen sensor stops reporting, the fan goes to maximum speed.
@@ -39,12 +39,12 @@ copy driver\inpoutx64.dll target\release\
 `driver\inpoutx64.dll` is InpOut32/64 by Phil Gibbons (highrez.co.uk), included under its MIT license (`driver\license.txt`).
 
 ## Running
-- `target\release\macfan.exe` asks for administrator rights; the driver needs them.
-- `macfan.exe --demo`: runs on simulated SMC data, no driver needed.
-- `macfan.exe --dump`: writes every SMC key to `smc-dump.txt` (for diagnostics).
-- `macfan.exe --no-mmio`: forces the port I/O path on non-T2 Macs.
-- `macfan.exe --selftest`: SMC write test (tries Fan 1's minimum speed, then forced mode at max speed, and restores both); writes `selftest.txt`.
-- Building with `MACFAN_NO_ADMIN=1` produces an exe that doesn't ask for admin (for `--demo` testing).
+- `target\release\wmf-control.exe` asks for administrator rights; the driver needs them.
+- `wmf-control.exe --demo`: runs on simulated SMC data, no driver needed.
+- `wmf-control.exe --dump`: writes every SMC key to `smc-dump.txt` (for diagnostics).
+- `wmf-control.exe --no-mmio`: forces the port I/O path on non-T2 Macs.
+- `wmf-control.exe --selftest`: SMC write test (tries Fan 1's minimum speed, then forced mode at max speed, and restores both); writes `selftest.txt`.
+- Building with `WMF_NO_ADMIN=1` produces an exe that doesn't ask for admin (for `--demo` testing).
 
 ## Hardware access
 | Driver | Port I/O | MMIO (T2) |

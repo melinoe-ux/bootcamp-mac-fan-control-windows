@@ -27,14 +27,14 @@ fn main() -> eframe::Result<()> {
 
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_title("MacFan – Fan Control")
+            .with_title("WMF Control")
             .with_inner_size([900.0, 600.0])
             .with_min_inner_size([640.0, 400.0])
             .with_icon(std::sync::Arc::new(egui::IconData { rgba: tray::icon_rgba(32), width: 32, height: 32 })),
         ..Default::default()
     };
     eframe::run_native(
-        "MacFan",
+        "WMF Control",
         options,
         Box::new(move |cc| Ok(Box::new(app::App::new(cc, demo, no_mmio)))),
     )
@@ -48,7 +48,7 @@ pub fn open_smc(demo: bool, no_mmio: bool) -> anyhow::Result<smc::Smc> {
     smc::Smc::open(io, !no_mmio)
 }
 
-/// `macfan.exe --selftest` – raise fan 0 minimum by 300 RPM, read back, restore.
+/// `wmf-control.exe --selftest` – raise fan 0 minimum by 300 RPM, read back, restore.
 fn selftest(demo: bool, no_mmio: bool) {
     let out = std::env::current_exe()
         .ok()
@@ -84,7 +84,7 @@ fn selftest(demo: bool, no_mmio: bool) {
     let _ = std::fs::write(out, log);
 }
 
-/// `macfan.exe --dump` – print every SMC key to a text file next to the exe (diagnostics).
+/// `wmf-control.exe --dump` – print every SMC key to a text file next to the exe (diagnostics).
 fn dump(demo: bool, no_mmio: bool) {
     let out = std::env::current_exe()
         .ok()

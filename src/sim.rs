@@ -1,5 +1,5 @@
 //! A fake SMC so the UI and control logic can be tried without the driver
-//! (`macfan.exe --demo`). Modelled after a MacBookPro16,1 (T2, `flt` fan keys).
+//! (`wmf-control.exe --demo`). Modelled after a MacBookPro16,1 (T2, `flt` fan keys).
 
 use crate::smc::{Key, KeyInfo, decode, encode, key};
 use anyhow::{Result, anyhow};
