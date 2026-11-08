@@ -1,3 +1,4 @@
+// WMF Control (Windows Mac Fan Control) - by melinoe-ux (https://github.com/melinoe-ux) - MIT License
 //! System tray icon + window hide/show (minimize to tray).
 //!
 //! While the window is hidden eframe stops painting frames, so everything the

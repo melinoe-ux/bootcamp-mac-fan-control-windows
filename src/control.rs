@@ -1,3 +1,4 @@
+// WMF Control (Windows Mac Fan Control) - by melinoe-ux (https://github.com/melinoe-ux) - MIT License
 //! Background worker: polls the SMC, applies fan rules, publishes snapshots to the UI.
 //!
 //! Control strategy: we never take the fan away from

@@ -1,6 +1,20 @@
+//! WMF Control – Windows Mac Fan Control
+//! Fan control and sensor monitor for Intel Macs running Windows (Boot Camp).
+//!
+//! Author: melinoe-ux (https://github.com/melinoe-ux)
+//! Source: https://github.com/melinoe-ux/bootcamp-mac-fan-control-windows
+//! License: MIT
+
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod app;
+
+pub const APP_NAME: &str = "WMF Control";
+pub const APP_FULL_NAME: &str = "Windows Mac Fan Control";
+pub const AUTHOR: &str = "melinoe-ux";
+pub const AUTHOR_URL: &str = "https://github.com/melinoe-ux";
+pub const REPO_URL: &str = "https://github.com/melinoe-ux/bootcamp-mac-fan-control-windows";
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 mod config;
 mod control;
 mod io;
@@ -27,7 +41,7 @@ fn main() -> eframe::Result<()> {
 
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_title("WMF Control")
+            .with_title(format!("{APP_NAME} ({APP_FULL_NAME}) – by {AUTHOR}"))
             .with_inner_size([900.0, 600.0])
             .with_min_inner_size([640.0, 400.0])
             .with_icon(std::sync::Arc::new(egui::IconData { rgba: tray::icon_rgba(32), width: 32, height: 32 })),

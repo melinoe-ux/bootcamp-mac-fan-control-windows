@@ -1,3 +1,4 @@
+// WMF Control (Windows Mac Fan Control) - by melinoe-ux (https://github.com/melinoe-ux) - MIT License
 use crate::config::{Config, FanMode};
 use crate::control::{Command, FanState, Snapshot, Worker};
 use crate::sensors::Kind;
@@ -332,7 +333,7 @@ impl eframe::App for App {
         let cpu_txt = snap.sensors.iter().find(|s| s.key == "TC0P").map(|s| self.fmt_temp(s.value));
         if let Some(t) = &mut self.tray {
             t.blast_item.set_checked(snap.full_blast);
-            let mut tip = String::from("WMF Control");
+            let mut tip = format!("{} – by {}", crate::APP_NAME, crate::AUTHOR);
             if snap.full_blast {
                 tip += " – FULL BLAST";
             }
@@ -347,11 +348,21 @@ impl eframe::App for App {
 
         egui::Panel::top("top").show(root, |ui| {
             ui.horizontal(|ui| {
-                ui.label(RichText::new("WMF Control").strong().size(18.0));
-                if !snap.transport.is_empty() {
-                    ui.label(RichText::new(&snap.transport).weak());
-                }
+                ui.label(RichText::new(crate::APP_NAME).strong().size(18.0)).on_hover_text(crate::APP_FULL_NAME);
+                ui.hyperlink_to(RichText::new(format!("by {}", crate::AUTHOR)).weak(), crate::AUTHOR_URL);
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                    ui.menu_button("About", |ui| {
+                        ui.label(RichText::new(format!("{} v{}", crate::APP_NAME, crate::VERSION)).strong().size(16.0));
+                        ui.label(crate::APP_FULL_NAME);
+                        ui.label("Fan control and sensor monitor for Intel Macs running Windows (Boot Camp).");
+                        ui.separator();
+                        ui.horizontal(|ui| {
+                            ui.label("Made by");
+                            ui.hyperlink_to(crate::AUTHOR, crate::AUTHOR_URL);
+                        });
+                        ui.hyperlink_to("Source code on GitHub", crate::REPO_URL);
+                        ui.label(RichText::new("MIT License").weak());
+                    });
                     ui.menu_button("Preferences", |ui| {
                         let mut changed = ui.checkbox(&mut self.fahrenheit, "Show °F").changed();
                         changed |= ui.checkbox(&mut self.show_all, "Show unnamed sensors").changed();
@@ -381,6 +392,9 @@ impl eframe::App for App {
             ui.horizontal(|ui| {
                 if snap.ready && snap.error.is_none() {
                     ui.label(RichText::new(format!("{} SMC keys · {} sensors", snap.key_total, snap.sensors.len())).weak());
+                }
+                if !snap.transport.is_empty() {
+                    ui.label(RichText::new(&snap.transport).weak());
                 }
                 for w in &snap.warnings {
                     ui.label(RichText::new(w).color(Color32::from_rgb(255, 170, 60)));

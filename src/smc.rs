@@ -1,3 +1,4 @@
+// WMF Control (Windows Mac Fan Control) - by melinoe-ux (https://github.com/melinoe-ux) - MIT License
 //! Apple System Management Controller (SMC) protocol.
 //!
 //! Two transports exist on Intel Macs:

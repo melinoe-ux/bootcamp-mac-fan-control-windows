@@ -1,6 +1,15 @@
-# WMF Control
+# WMF Control: Windows Mac Fan Control
 
-Fan control and sensor monitor written in Rust for Intel Macs running Windows (Boot Camp).
+**Free, open-source fan control for MacBook / iMac / Mac mini running Windows through Boot Camp.** It works on Intel Macs, including the 2018–2020 T2 models (MacBook Pro 16" 2019, MacBook Pro 13"/15" 2018–2020, MacBook Air 2018–2020, iMac Pro, Mac mini 2018).
+
+Control your Mac's fan speed on Windows 10/11, set a constant RPM or a temperature-based fan curve, run the fans at full speed with one click, and read CPU, GPU, battery and SSD temperatures from the Apple SMC. Written in Rust.
+
+**Author:** [melinoe-ux](https://github.com/melinoe-ux) · **License:** MIT
+
+### Getting started
+1. Download or build `wmf-control.exe` and put `inpoutx64.dll` (from the `driver` folder) next to it.
+2. Run `wmf-control.exe` and accept the administrator prompt.
+3. Click **Custom…** next to a fan, or **Full Blast**.
 
 ## Features
 - Live RPM for every fan (current / min / max)
